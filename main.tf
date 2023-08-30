@@ -45,7 +45,7 @@ module "blog_sg" {
   version = "5.1.0"
   name = "blog_new"
 
-  vpc_id = module.vpc.public_subnets
+  vpc_id = module.vpc.public_subnets[0]
   
   ingress_rules = ["http-80-tcp", "https-443-tcp"]
   ingress_cidr_blocks = ["0.0.0.0/0"]
@@ -58,7 +58,7 @@ resource "aws_security_group" "blog" {
   name = "blog"
   description = "Allow http and https in. Allow everything out"
 
-  vpc_id = module.vpc.public_subnets
+  vpc_id = module.vpc.public_subnets[0]
 }
 
 resource "aws_security_group_rule" "blog_http_in" {
